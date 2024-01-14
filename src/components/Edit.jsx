@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
+import {  useParams } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { nanoid } from "nanoid"
 import {addNoteFromUser, editNote} from "../features/notes"
-import { useParams } from "react-router-dom"
 export default function Edit() {
   const dispatch = useDispatch()
   const notes = useSelector(state => state.notes)
@@ -34,7 +34,7 @@ export default function Edit() {
         bodyText: "",
       })
     }
-  }, [id])
+  }, [id, notes.list])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -126,9 +126,11 @@ export default function Edit() {
           <p className="text-red-400 mb-2">Veuillez écrire du contenu.</p>
         )}
 
-        <button className="mt-4 px-3 py-1 bg-slate-100 rounded">
+        <button 
+        
+        className="mt-4 px-3 py-1  text-slate-200 bg-green-600 rounded mr-2">
           Enregistrer
-        </button>
+       </button>
       </form>
     </div>
   )

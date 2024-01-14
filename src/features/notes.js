@@ -33,5 +33,5 @@ export function getNotesFromAPI(action) {
   }
 }
 
-export const {addNotesFromAPI, addNoteFromUser, editNote, deleteNote} = notes.actions 
+export const {addNotesFromAPI, addNoteFromUser, editNote, saveNote, deleteNote} = notes.actions 
 export default notes.reducer

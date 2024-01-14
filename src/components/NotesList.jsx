@@ -5,7 +5,7 @@ export default function NotesList() {
   const notes = useSelector(state => state.notes)
   return (
     <div className="p-10 w-full">
-      <p className="text-xl text-slate-200 mb-6">Bienvenue sur Notes101</p>
+      <p className="text-xl text-slate-200 mb-6">Bienvenue sur App en Vite  et React </p>
 
       <ul className="grid lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
         {notes.list &&
