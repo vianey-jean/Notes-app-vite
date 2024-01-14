@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import NotesList from "./components/NotesList"
+import { useSelector, useDispatch } from "react-redux"
+import { getNotesFromAPI } from "./features/notes"
+import Sidebar from "./components/Sidebar"
+import SideNotes from "./components/SideNotes"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import DisplayedNote from "./components/DisplayedNote"
+import Edit from "./components/Edit"
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch()
+  const notes = useSelector(state => state.notes)
+  console.log(notes)
+  if (!notes.list) {
+    dispatch(getNotesFromAPI())
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="bg-slate-800 min-h-screen flex">
+      <BrowserRouter>
+        <Sidebar />
+        <SideNotes />
+     
+        <Routes>
+          <Route path="/" element={<NotesList />} />
+          <Route path="/note/:id" element={<DisplayedNote />} />
+          <Route path="/editer" element={<Edit />} />
+          <Route path="/editer/:id" element={<Edit />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 
